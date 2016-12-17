@@ -33,23 +33,23 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.chkPreview = new System.Windows.Forms.CheckBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.numPixels = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.numGamma = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.chkRegions = new System.Windows.Forms.CheckBox();
             this.picPreview = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.numRegion = new System.Windows.Forms.NumericUpDown();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.menuIcon = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.useRegionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ambientOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useRegionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numPixels)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGamma)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPreview)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numRegion)).BeginInit();
             this.menuIcon.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,23 +85,23 @@
             this.chkPreview.UseVisualStyleBackColor = true;
             this.chkPreview.CheckedChanged += new System.EventHandler(this.chkPreview_CheckedChanged);
             // 
-            // numericUpDown1
+            // numPixels
             // 
-            this.numericUpDown1.Increment = new decimal(new int[] {
+            this.numPixels.Increment = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.numericUpDown1.Location = new System.Drawing.Point(102, 195);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 26);
-            this.numericUpDown1.TabIndex = 3;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.numPixels.Location = new System.Drawing.Point(102, 195);
+            this.numPixels.Name = "numPixels";
+            this.numPixels.Size = new System.Drawing.Size(120, 26);
+            this.numPixels.TabIndex = 3;
+            this.numPixels.Value = new decimal(new int[] {
             40,
             0,
             0,
             0});
-            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            this.numPixels.ValueChanged += new System.EventHandler(this.pixelStep_ValueChanged);
             // 
             // label1
             // 
@@ -112,34 +112,34 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "pixel step";
             // 
-            // numericUpDown2
+            // numGamma
             // 
-            this.numericUpDown2.DecimalPlaces = 1;
-            this.numericUpDown2.Increment = new decimal(new int[] {
+            this.numGamma.DecimalPlaces = 1;
+            this.numGamma.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.numericUpDown2.Location = new System.Drawing.Point(102, 279);
-            this.numericUpDown2.Maximum = new decimal(new int[] {
+            this.numGamma.Location = new System.Drawing.Point(102, 279);
+            this.numGamma.Maximum = new decimal(new int[] {
             4,
             0,
             0,
             0});
-            this.numericUpDown2.Minimum = new decimal(new int[] {
+            this.numGamma.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(120, 26);
-            this.numericUpDown2.TabIndex = 5;
-            this.numericUpDown2.Value = new decimal(new int[] {
+            this.numGamma.Name = "numGamma";
+            this.numGamma.Size = new System.Drawing.Size(120, 26);
+            this.numGamma.TabIndex = 5;
+            this.numGamma.Value = new decimal(new int[] {
             2,
             0,
             0,
             0});
-            this.numericUpDown2.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
+            this.numGamma.ValueChanged += new System.EventHandler(this.gamma_ValueChanged);
             // 
             // label2
             // 
@@ -181,33 +181,33 @@
             this.label3.TabIndex = 10;
             this.label3.Text = "region size";
             // 
-            // numericUpDown3
+            // numRegion
             // 
-            this.numericUpDown3.Increment = new decimal(new int[] {
+            this.numRegion.Increment = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.numericUpDown3.Location = new System.Drawing.Point(102, 238);
-            this.numericUpDown3.Maximum = new decimal(new int[] {
+            this.numRegion.Location = new System.Drawing.Point(102, 238);
+            this.numRegion.Maximum = new decimal(new int[] {
             500,
             0,
             0,
             0});
-            this.numericUpDown3.Minimum = new decimal(new int[] {
+            this.numRegion.Minimum = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(120, 26);
-            this.numericUpDown3.TabIndex = 9;
-            this.numericUpDown3.Value = new decimal(new int[] {
+            this.numRegion.Name = "numRegion";
+            this.numRegion.Size = new System.Drawing.Size(120, 26);
+            this.numRegion.TabIndex = 9;
+            this.numRegion.Value = new decimal(new int[] {
             120,
             0,
             0,
             0});
-            this.numericUpDown3.ValueChanged += new System.EventHandler(this.numericUpDown3_ValueChanged);
+            this.numRegion.ValueChanged += new System.EventHandler(this.RegionSize_ValueChanged);
             // 
             // notifyIcon1
             // 
@@ -227,14 +227,6 @@
             this.menuIcon.Name = "menuIcon";
             this.menuIcon.Size = new System.Drawing.Size(195, 94);
             // 
-            // useRegionsToolStripMenuItem
-            // 
-            this.useRegionsToolStripMenuItem.CheckOnClick = true;
-            this.useRegionsToolStripMenuItem.Name = "useRegionsToolStripMenuItem";
-            this.useRegionsToolStripMenuItem.Size = new System.Drawing.Size(194, 30);
-            this.useRegionsToolStripMenuItem.Text = "Use Regions";
-            this.useRegionsToolStripMenuItem.Click += new System.EventHandler(this.useRegionsToolStripMenuItem_Click);
-            // 
             // ambientOnToolStripMenuItem
             // 
             this.ambientOnToolStripMenuItem.CheckOnClick = true;
@@ -242,6 +234,14 @@
             this.ambientOnToolStripMenuItem.Size = new System.Drawing.Size(194, 30);
             this.ambientOnToolStripMenuItem.Text = "Ambient On";
             this.ambientOnToolStripMenuItem.Click += new System.EventHandler(this.ambientOnToolStripMenuItem_Click);
+            // 
+            // useRegionsToolStripMenuItem
+            // 
+            this.useRegionsToolStripMenuItem.CheckOnClick = true;
+            this.useRegionsToolStripMenuItem.Name = "useRegionsToolStripMenuItem";
+            this.useRegionsToolStripMenuItem.Size = new System.Drawing.Size(194, 30);
+            this.useRegionsToolStripMenuItem.Text = "Use Regions";
+            this.useRegionsToolStripMenuItem.Click += new System.EventHandler(this.useRegionsToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -256,13 +256,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1140, 498);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.numericUpDown3);
+            this.Controls.Add(this.numRegion);
             this.Controls.Add(this.picPreview);
             this.Controls.Add(this.chkRegions);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.numericUpDown2);
+            this.Controls.Add(this.numGamma);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.numPixels);
             this.Controls.Add(this.chkPreview);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -272,10 +272,10 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Resize += new System.EventHandler(this.Form1_Resize);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numPixels)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGamma)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPreview)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numRegion)).EndInit();
             this.menuIcon.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -287,14 +287,14 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.CheckBox chkPreview;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown numPixels;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown numGamma;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox chkRegions;
         private System.Windows.Forms.PictureBox picPreview;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
+        private System.Windows.Forms.NumericUpDown numRegion;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.ContextMenuStrip menuIcon;
         private System.Windows.Forms.ToolStripMenuItem ambientOnToolStripMenuItem;

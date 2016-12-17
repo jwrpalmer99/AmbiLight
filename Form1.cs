@@ -29,6 +29,9 @@ namespace Ambilight
             this.args = args;
             InitializeComponent();
 
+            loadsettings();
+            changeUseRegions();
+
             if (args.Contains("mini"))
                 this.WindowState = FormWindowState.Minimized;
 
@@ -37,6 +40,28 @@ namespace Ambilight
             
             if (args.Contains("start"))
                 startAmbient();
+        }
+
+        private void loadsettings()
+        {
+            int px = Properties.Settings.Default.PixelStep;
+            int rg = Properties.Settings.Default.RegionSize;
+            decimal gm = Properties.Settings.Default.Gamma;
+            bool chkr = Properties.Settings.Default.UseRegions;
+            numPixels.Value = px;
+            numRegion.Value = rg;
+            numGamma.Value = gm;
+            chkRegions.Checked = chkr;
+            changeUseRegions();
+        }
+
+        private void savesettings()
+        {
+            Properties.Settings.Default.PixelStep = (int)numPixels.Value;
+            Properties.Settings.Default.RegionSize = (int)numRegion.Value;
+            Properties.Settings.Default.Gamma = numGamma.Value;
+            Properties.Settings.Default.UseRegions = chkRegions.Checked;
+            Properties.Settings.Default.Save();
         }
 
         BackgroundWorker bw;
@@ -161,19 +186,22 @@ namespace Ambilight
             TurnAllLEDOff();
         }
 
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        private void pixelStep_ValueChanged(object sender, EventArgs e)
         {
-            int.TryParse(numericUpDown1.Value.ToString(), out Globals.pixelStep);
+            int.TryParse(numPixels.Value.ToString(), out Globals.pixelStep);
+            savesettings();
         }
 
-        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
+        private void gamma_ValueChanged(object sender, EventArgs e)
         {
-            Globals.setgamma((double)(numericUpDown2.Value));
+            Globals.setgamma((double)(numGamma.Value));
+            savesettings();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Globals.setgamma((double)(numericUpDown2.Value));
+            Globals.setgamma((double)(numGamma.Value));
+            useRegionsToolStripMenuItem.Checked = chkRegions.Checked;
         }
 
         private void chkPreview_CheckedChanged(object sender, EventArgs e)
@@ -183,6 +211,7 @@ namespace Ambilight
 
         private void chkRegions_CheckedChanged(object sender, EventArgs e)
         {
+            savesettings();
             changeUseRegions();
         }
 
@@ -222,10 +251,11 @@ namespace Ambilight
             picPreview.Image = bmp;
         }
 
-        private void numericUpDown3_ValueChanged(object sender, EventArgs e)
+        private void RegionSize_ValueChanged(object sender, EventArgs e)
         {
-            Globals.region_size = (int)(numericUpDown3.Value);
+            Globals.region_size = (int)(numRegion.Value);
             Globals.setRegions();
+            savesettings();
         }
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
