@@ -1,0 +1,15 @@
+c:\users\jeremy\documents\visual studio 2015\Projects\Ambilight\Ambilight\bin\Debug\Ambilight.exe.config
+c:\users\jeremy\documents\visual studio 2015\Projects\Ambilight\Ambilight\bin\Debug\Ambilight.exe
+c:\users\jeremy\documents\visual studio 2015\Projects\Ambilight\Ambilight\bin\Debug\Ambilight.pdb
+c:\users\jeremy\documents\visual studio 2015\Projects\Ambilight\Ambilight\bin\Debug\BlinkStickDotNet.dll
+c:\users\jeremy\documents\visual studio 2015\Projects\Ambilight\Ambilight\bin\Debug\LibUsbDotNet.dll
+c:\users\jeremy\documents\visual studio 2015\Projects\Ambilight\Ambilight\bin\Debug\HidSharp.dll
+c:\users\jeremy\documents\visual studio 2015\Projects\Ambilight\Ambilight\bin\Debug\LibUsbDotNet.pdb
+c:\users\jeremy\documents\visual studio 2015\Projects\Ambilight\Ambilight\bin\Debug\LibUsbDotNet.xml
+c:\users\jeremy\documents\visual studio 2015\Projects\Ambilight\Ambilight\bin\Debug\HidSharp.pdb
+c:\users\jeremy\documents\visual studio 2015\Projects\Ambilight\Ambilight\obj\Debug\Ambilight.csprojResolveAssemblyReference.cache
+c:\users\jeremy\documents\visual studio 2015\Projects\Ambilight\Ambilight\obj\Debug\Ambilight.Form1.resources
+c:\users\jeremy\documents\visual studio 2015\Projects\Ambilight\Ambilight\obj\Debug\Ambilight.Properties.Resources.resources
+c:\users\jeremy\documents\visual studio 2015\Projects\Ambilight\Ambilight\obj\Debug\Ambilight.csproj.GenerateResource.Cache
+c:\users\jeremy\documents\visual studio 2015\Projects\Ambilight\Ambilight\obj\Debug\Ambilight.exe
+c:\users\jeremy\documents\visual studio 2015\Projects\Ambilight\Ambilight\obj\Debug\Ambilight.pdb
