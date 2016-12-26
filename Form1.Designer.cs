@@ -46,11 +46,21 @@
             this.ambientOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useRegionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.timerEmail = new System.Windows.Forms.Timer(this.components);
+            this.lblEmail = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.numTimer = new System.Windows.Forms.NumericUpDown();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.cmdScanColor = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numPixels)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numGamma)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPreview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRegion)).BeginInit();
             this.menuIcon.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numTimer)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -155,7 +165,7 @@
             this.chkRegions.AutoSize = true;
             this.chkRegions.Checked = true;
             this.chkRegions.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkRegions.Location = new System.Drawing.Point(12, 357);
+            this.chkRegions.Location = new System.Drawing.Point(12, 320);
             this.chkRegions.Name = "chkRegions";
             this.chkRegions.Size = new System.Drawing.Size(117, 24);
             this.chkRegions.TabIndex = 7;
@@ -250,11 +260,113 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(8, 400);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(162, 24);
+            this.checkBox1.TabIndex = 11;
+            this.checkBox1.Text = "alert on new email";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // timerEmail
+            // 
+            this.timerEmail.Interval = 60000;
+            this.timerEmail.Tick += new System.EventHandler(this.timerEmail_Tick);
+            // 
+            // lblEmail
+            // 
+            this.lblEmail.AutoSize = true;
+            this.lblEmail.Location = new System.Drawing.Point(4, 469);
+            this.lblEmail.Name = "lblEmail";
+            this.lblEmail.Size = new System.Drawing.Size(103, 20);
+            this.lblEmail.TabIndex = 13;
+            this.lblEmail.Text = "unread mails:";
+            this.lblEmail.Click += new System.EventHandler(this.lblEmail_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(4, 432);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(105, 20);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "check rate (s)";
+            // 
+            // numTimer
+            // 
+            this.numTimer.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numTimer.Location = new System.Drawing.Point(119, 430);
+            this.numTimer.Maximum = new decimal(new int[] {
+            30000,
+            0,
+            0,
+            0});
+            this.numTimer.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numTimer.Name = "numTimer";
+            this.numTimer.Size = new System.Drawing.Size(86, 26);
+            this.numTimer.TabIndex = 14;
+            this.numTimer.Value = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.numTimer.ValueChanged += new System.EventHandler(this.numTimer_ValueChanged);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(264, 155);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(90, 34);
+            this.button3.TabIndex = 16;
+            this.button3.Text = "FireFX";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(264, 226);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(90, 34);
+            this.button4.TabIndex = 17;
+            this.button4.Text = "Scanner";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // cmdScanColor
+            // 
+            this.cmdScanColor.BackgroundImage = global::Ambilight.Properties.Resources._9881os_abr3_3;
+            this.cmdScanColor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.cmdScanColor.Location = new System.Drawing.Point(298, 264);
+            this.cmdScanColor.Name = "cmdScanColor";
+            this.cmdScanColor.Size = new System.Drawing.Size(56, 41);
+            this.cmdScanColor.TabIndex = 18;
+            this.cmdScanColor.UseVisualStyleBackColor = true;
+            this.cmdScanColor.Click += new System.EventHandler(this.cmdScanColor_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1140, 498);
+            this.Controls.Add(this.cmdScanColor);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.numTimer);
+            this.Controls.Add(this.lblEmail);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.numRegion);
             this.Controls.Add(this.picPreview);
@@ -277,6 +389,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picPreview)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRegion)).EndInit();
             this.menuIcon.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numTimer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -300,6 +413,15 @@
         private System.Windows.Forms.ToolStripMenuItem ambientOnToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem useRegionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Timer timerEmail;
+        private System.Windows.Forms.Label lblEmail;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.NumericUpDown numTimer;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.Button cmdScanColor;
     }
 }
 

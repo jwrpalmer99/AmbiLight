@@ -70,5 +70,29 @@ namespace Ambilight.Properties {
                 this["UseRegions"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
+        public int ScanTime {
+            get {
+                return ((int)(this["ScanTime"]));
+            }
+            set {
+                this["ScanTime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 192, 0")]
+        public global::System.Drawing.Color ScanColour {
+            get {
+                return ((global::System.Drawing.Color)(this["ScanColour"]));
+            }
+            set {
+                this["ScanColour"] = value;
+            }
+        }
     }
 }

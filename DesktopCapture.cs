@@ -11,6 +11,7 @@ using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using Spectrum;
 
 namespace Ambilight
 {
@@ -174,8 +175,8 @@ namespace Ambilight
                                 //Form1.bs.SetColor(0, ib, (byte)(avgR), (byte)(avgG), (byte)(avgB));
                             }
 
-                         
-                            Form1.bs.SetColors(0, colorData);
+
+                            if (!Globals.pause) Form1.bs.SetColors(0, colorData);
 
                             if (Globals.preview)
                             {
@@ -226,21 +227,25 @@ namespace Ambilight
                                     long avgB = totals[0] / c;
                                     long avgG = totals[1] / c;
                                     long avgR = totals[2] / c;
-
-                                    Globals.LEDRegions[region].R = (int)avgR;
-                                    Globals.LEDRegions[region].G = (int)avgG;
-                                    Globals.LEDRegions[region].B = (int)avgB;
-
-                                    colorData[region * 3] = (byte)(Globals.gamma8[avgG]);
-                                    colorData[region * 3 + 1] = (byte)(Globals.gamma8[avgR]);
-                                    colorData[region * 3 + 2] = (byte)(Globals.gamma8[avgB]);
                                     
+                                    Spectrum.Color.RGB rgb = new Spectrum.Color.RGB((byte)Globals.gamma8[avgR], (byte)Globals.gamma8[avgG], (byte)Globals.gamma8[avgB]);
+
+                                    rgb = rgb.ToHSL().ShiftLightness(-0.1).ToRGB();
+
+                                    colorData[region * 3] = rgb.G;
+                                    colorData[region * 3 + 1] = rgb.R;
+                                    colorData[region * 3 + 2] = rgb.B;
+
+                                    Globals.LEDRegions[region].R = (int)rgb.R;
+                                    Globals.LEDRegions[region].G = (int)rgb.G;
+                                    Globals.LEDRegions[region].B = (int)rgb.B;
+
                                 }
 
                                 
                             }
                             //bmp.UnlockBits(bmpData);
-                            Form1.bs.SetColors(0, colorData);
+                            if (!Globals.pause) Form1.bs.SetColors(0, colorData);
 
                             if (Globals.preview)
                             {
@@ -290,6 +295,7 @@ namespace Ambilight
                         
                         sw.Stop();
                         Debug.WriteLine("time: " + sw.ElapsedMilliseconds.ToString() + "ms");
+                        System.Threading.Thread.Sleep(20);
                     }
                 }
             }

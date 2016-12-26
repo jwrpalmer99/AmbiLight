@@ -78,6 +78,7 @@ namespace Ambilight
         internal static bool useRegions;
         internal static bool preview;
         internal static Bitmap previewbitmap;
+        internal static bool pause;
 
         public static void setgamma(double gamma)
         {
