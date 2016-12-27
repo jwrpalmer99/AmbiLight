@@ -38,3 +38,7 @@ C:\Users\jeremy\documents\visual studio 2015\Projects\Ambilight\Ambilight\bin\x8
 C:\Users\jeremy\documents\visual studio 2015\Projects\Ambilight\Ambilight\bin\x86\Debug\S22.Imap.dll
 C:\Users\jeremy\documents\visual studio 2015\Projects\Ambilight\Ambilight\bin\x86\Debug\S22.Imap.xml
 C:\Users\jeremy\documents\visual studio 2015\Projects\Ambilight\Ambilight\bin\x86\Debug\Spectrum.dll
+C:\Users\jeremy\documents\visual studio 2015\Projects\Ambilight\Ambilight\bin\x86\Debug\Microsoft.WindowsAPICodePack.dll
+C:\Users\jeremy\documents\visual studio 2015\Projects\Ambilight\Ambilight\bin\x86\Debug\Microsoft.WindowsAPICodePack.Sensors.dll
+C:\Users\jeremy\documents\visual studio 2015\Projects\Ambilight\Ambilight\bin\x86\Debug\Microsoft.WindowsAPICodePack.xml
+C:\Users\jeremy\documents\visual studio 2015\Projects\Ambilight\Ambilight\bin\x86\Debug\Microsoft.WindowsAPICodePack.Sensors.xml

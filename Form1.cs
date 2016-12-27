@@ -11,6 +11,7 @@ using BlinkStickDotNet;
 using S22.Imap;
 using System.Net.Mail;
 using System.Reflection;
+using Microsoft.WindowsAPICodePack.ApplicationServices;
 
 namespace Ambilight
 {
@@ -19,6 +20,14 @@ namespace Ambilight
         internal static BlinkStick bs;
         int numberOfLeds = 32;
         internal bool ambientOn = false;
+
+        void MonitorOnChanged(object sender, EventArgs e)
+        {
+            Globals.MonitorOn = PowerManager.IsMonitorOn;
+            if (Globals.MonitorOn == false)
+                TurnAllLEDOff();
+            //Console.WriteLine(string.Format("Monitor status changed (new status: {0})", PowerManager.IsMonitorOn ? "On" : "Off"));
+        }
 
         public Form1()
         {
@@ -31,7 +40,7 @@ namespace Ambilight
         {
             this.args = args;
             InitializeComponent();
-
+            PowerManager.IsMonitorOnChanged += new EventHandler(MonitorOnChanged);
             typeof(PictureBox).InvokeMember("DoubleBuffered",
    BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic,
    null, picPreview, new object[] { true });
@@ -181,6 +190,12 @@ namespace Ambilight
 
         private void newFire(Random rand, int rmin, int gmin, int bmin, int rmax, int gmax, int bmax, byte[] colorData)
         {
+            if (!Globals.MonitorOn)
+            {
+                TurnAllLEDOff();
+                return;
+            }
+            
             for (byte ib = 0; ib < numberOfLeds; ib++)
             {
                 int flicker = rand.Next(0, 40);
@@ -200,7 +215,7 @@ namespace Ambilight
                 colorData[ib * 3 + 2] = (byte)b1;
             }
 
-            bs.SetColors(0, colorData);
+            if (Globals.MonitorOn) bs.SetColors(0, colorData);
             System.Threading.Thread.Sleep(rand.Next(10, 50));
         }
 
@@ -244,6 +259,11 @@ namespace Ambilight
 
         private int newScanner(byte[] colorData, int counter, bool forward = true)
         {
+            if (!Globals.MonitorOn)
+            {
+                TurnAllLEDOff();
+                return 0;
+            }
             int r = colorDialog1.Color.R;
             int g = colorDialog1.Color.G;
             int b = colorDialog1.Color.B;
@@ -273,7 +293,7 @@ namespace Ambilight
                         colorData[ib * 3 + 2] = (byte)0;
                     }
                 }
-                bs.SetColors(0, colorData);
+                if (Globals.MonitorOn) bs.SetColors(0, colorData);
                    
             
             return counter;
@@ -584,8 +604,7 @@ namespace Ambilight
                 colorData[ib * 3 + 1] = g;
                 colorData[ib * 3 + 2] = b;
             }
-
-            bs.SetColors(0, colorData);
+            if ( Globals.MonitorOn) bs.SetColors(0, colorData);
         }
 
         private void blink()

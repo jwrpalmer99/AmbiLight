@@ -79,6 +79,7 @@ namespace Ambilight
         internal static bool preview;
         internal static Bitmap previewbitmap;
         internal static bool pause;
+        internal static bool MonitorOn = true;
 
         public static void setgamma(double gamma)
         {

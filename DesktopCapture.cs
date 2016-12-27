@@ -176,9 +176,9 @@ namespace Ambilight
                             }
 
 
-                            if (!Globals.pause) Form1.bs.SetColors(0, colorData);
+                            if (!Globals.pause && Globals.MonitorOn) Form1.bs.SetColors(0, colorData);
 
-                            if (Globals.preview)
+                            if (Globals.preview && Globals.MonitorOn)
                             {
                                 ShowPreview();
                                 //bmp.Dispose();
@@ -245,9 +245,9 @@ namespace Ambilight
                                 
                             }
                             //bmp.UnlockBits(bmpData);
-                            if (!Globals.pause) Form1.bs.SetColors(0, colorData);
+                            if (!Globals.pause && Globals.MonitorOn) Form1.bs.SetColors(0, colorData);
 
-                            if (Globals.preview)
+                            if (Globals.preview && Globals.MonitorOn)
                             {
                                 ShowPreview();
                                 //bmp.Dispose();
