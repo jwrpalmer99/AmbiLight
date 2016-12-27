@@ -30,7 +30,7 @@ namespace Ambilight
             double heightpercent = 0.7f; //ratio of screen height with leds on
 
             int h =  (int)((heightpercent *  height) / 6.0); //7 led on each side
-            int w =  (int)(width / 18.0); //18 led along top
+            int w =  (int)(Math.Ceiling((width - 2 * region_size) / 18.0)); //18 led along top
             int starth = h * 6;
 
             //left side
@@ -46,7 +46,7 @@ namespace Ambilight
             {
                 LEDRegions[i] = new LEDRegion();
                 LEDRegions[i].LEDindex = i;
-                LEDRegions[i].rect = new System.Drawing.Rectangle((i - 7)* w, 0, w, region_size);
+                LEDRegions[i].rect = new System.Drawing.Rectangle((i - 7)* w + region_size, 0, w, region_size);
             }
 
             //right side

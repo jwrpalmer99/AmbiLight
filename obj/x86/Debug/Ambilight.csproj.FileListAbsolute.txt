@@ -1,7 +1,6 @@
 c:\users\jeremy\documents\visual studio 2015\Projects\Ambilight\Ambilight\bin\x86\Debug\Ambilight.exe.config
 c:\users\jeremy\documents\visual studio 2015\Projects\Ambilight\Ambilight\bin\x86\Debug\Ambilight.exe
 c:\users\jeremy\documents\visual studio 2015\Projects\Ambilight\Ambilight\bin\x86\Debug\Ambilight.pdb
-c:\users\jeremy\documents\visual studio 2015\Projects\Ambilight\Ambilight\bin\x86\Debug\BlinkStickDotNet.dll
 c:\users\jeremy\documents\visual studio 2015\Projects\Ambilight\Ambilight\bin\x86\Debug\SlimDX.dll
 c:\users\jeremy\documents\visual studio 2015\Projects\Ambilight\Ambilight\bin\x86\Debug\LibUsbDotNet.dll
 c:\users\jeremy\documents\visual studio 2015\Projects\Ambilight\Ambilight\bin\x86\Debug\HidSharp.dll

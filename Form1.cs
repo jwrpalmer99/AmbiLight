@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using BlinkStickDotNet;
 using S22.Imap;
 using System.Net.Mail;
+using System.Reflection;
 
 namespace Ambilight
 {
@@ -30,6 +31,10 @@ namespace Ambilight
         {
             this.args = args;
             InitializeComponent();
+
+            typeof(PictureBox).InvokeMember("DoubleBuffered",
+   BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic,
+   null, picPreview, new object[] { true });
 
             loadsettings();
             changeUseRegions();
@@ -438,22 +443,42 @@ namespace Ambilight
         }
 
         private bool creatingpreview = false;
+        private Bitmap bmppreview = null;
 
         private void showbmp(Bitmap bmp)
         {
+            
+            bmppreview = new Bitmap(picPreview.Width, picPreview.Height);
+            Graphics g =  Graphics.FromImage(bmppreview);
+            //g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
+            //g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighSpeed;
+            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Low;
+            g.Clear(Color.White);
+            //g.DrawImageUnscaled(bmp, 0, 0);
+            g.DrawImage(bmp,picPreview.DisplayRectangle);
             if (Globals.useRegions)
             {
-                Graphics g = Graphics.FromImage(bmp);
                 Pen pen1 = new Pen(System.Drawing.Color.Green, 2);
                 Brush brush1 = new SolidBrush(System.Drawing.Color.FromArgb(128, 255, 255, 255));
                 for (int i = 0; i < 32; i++)
                 {
-                    g.FillRectangle(new SolidBrush(System.Drawing.Color.FromArgb(255, Globals.LEDRegions[i].R, Globals.LEDRegions[i].G, Globals.LEDRegions[i].B)), Globals.LEDRegions[i].rect);
-                    g.DrawRectangle(pen1, Globals.LEDRegions[i].rect);
-                }
-                g.Dispose();
+                    Rectangle rect = new Rectangle((int)(Globals.LEDRegions[i].rect.Left * (1.0f * picPreview.Width / bmp.Width)),
+                        (int)(Globals.LEDRegions[i].rect.Top * (1.0f *picPreview.Height / bmp.Height)),
+                        (int)((Globals.LEDRegions[i].rect.Right - Globals.LEDRegions[i].rect.Left) * (1.0f * picPreview.Width / bmp.Width)),
+                        (int)((Globals.LEDRegions[i].rect.Bottom - Globals.LEDRegions[i].rect.Top) * (1.0f * picPreview.Height / bmp.Height))
+                        );
+                    g.FillRectangle(new SolidBrush(System.Drawing.Color.FromArgb(255, Globals.LEDRegions[i].R, Globals.LEDRegions[i].G, Globals.LEDRegions[i].B)), rect);
+                    g.DrawRectangle(pen1, rect);
+                }               
             }
-            picPreview.Image = bmp;
+            g.Dispose();
+
+            Graphics gw = picPreview.CreateGraphics();
+            gw.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
+            gw.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Low;
+            gw.DrawImageUnscaled(bmppreview, 0, 0);
+            gw.Dispose();
+            //picPreview.Image = bmp;
         }
 
         private void RegionSize_ValueChanged(object sender, EventArgs e)

@@ -177,7 +177,7 @@
             // 
             this.picPreview.Location = new System.Drawing.Point(420, 31);
             this.picPreview.Name = "picPreview";
-            this.picPreview.Size = new System.Drawing.Size(700, 438);
+            this.picPreview.Size = new System.Drawing.Size(682, 438);
             this.picPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picPreview.TabIndex = 8;
             this.picPreview.TabStop = false;
