@@ -12,6 +12,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using Spectrum;
+using System.Windows.Forms;
 
 namespace Ambilight
 {
@@ -29,6 +30,11 @@ namespace Ambilight
         SharpDX.Direct3D11.Texture2D screenTexture;
 
         internal void Dispose()
+        {
+            releaseAll();
+        }
+
+        private void releaseAll()
         {
             try
             {
@@ -114,7 +120,6 @@ namespace Ambilight
                             if (ex.ResultCode.Code == SharpDX.DXGI.ResultCode.WaitTimeout.Result.Code)
                             {
                                 // this has not been a successful capture
-                                // thanks @Randy
                                 i--;
 
                                 // keep retrying
@@ -139,6 +144,24 @@ namespace Ambilight
 
                         if (!Globals.useRegions)
                         {
+                            //var bmp = new Bitmap(1, 1);
+                            //using (Graphics g = Graphics.FromImage(bmp))
+                            //{
+                            //    // updated: the Interpolation mode needs to be set to
+                            //    // HighQualityBilinear or HighQualityBicubic or this method
+                            //    // doesn't work at all.  With either setting, the results are
+                            //    // slightly different from the averaging method.
+                            //    g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
+                            //    g.DrawImage(getBMP(), new System.Drawing.Rectangle(0, 0, 1, 1));
+                            //}
+                            //System.Drawing.Color pixel = bmp.GetPixel(0, 0);
+                            //// pixel will contain average values for entire orig Bitmap
+                            //bmp.Dispose();
+
+                            //long avgB = pixel.B;
+                            //long avgG = pixel.G;
+                            //long avgR = pixel.R;
+
                             long[] totals = new long[] { 0, 0, 0 };
 
                             IntPtr backing = dataStream.DataPointer;
@@ -163,6 +186,7 @@ namespace Ambilight
                             long avgG = totals[1] / (texdes.Width * texdes.Height / step);
                             long avgR = totals[2] / (texdes.Width * texdes.Height / step);
 
+                        
 
                             int numberOfLeds = 32;
 
@@ -181,7 +205,6 @@ namespace Ambilight
                             if (Globals.preview && Globals.MonitorOn)
                             {
                                 ShowPreview();
-                                //bmp.Dispose();
                             }
                         }
                         else
@@ -244,63 +267,52 @@ namespace Ambilight
 
                                 
                             }
-                            //bmp.UnlockBits(bmpData);
                             if (!Globals.pause && Globals.MonitorOn) Form1.bs.SetColors(0, colorData);
 
                             if (Globals.preview && Globals.MonitorOn)
                             {
                                 ShowPreview();
-                                //bmp.Dispose();
                             }
                         }
-                        //int stride = bmpData.Stride;
-
-                        //IntPtr Scan0 = bmpData.Scan0;
-
-
-
-                        //int width = bmp.Width;
-                        //int height = bmp.Height;
-
-                        //unsafe
-                        //{
-                        //    byte* p = (byte*)(void*)Scan0;
-
-                        //    for (int y = 0; y < height; y++)
-                        //    {
-                        //        for (int x = 0; x < width; x++)
-                        //        {
-                        //            for (int color = 0; color < 3; color++)
-                        //            {
-                        //                int idx = (y * stride) + x * 4 + color;
-
-                        //                totals[color] += p[idx];
-                        //            }
-                        //        }
-                        //    }
-                        //}
-
-
-
-                        //bmp.UnlockBits(bmpData);
-
+                      
                         // free resources
                         dataStream.Close();
                         screenSurface.Unmap();
                         screenSurface.Dispose();
                         screenResource.Dispose();
                         duplicatedOutput.ReleaseFrame();
-
-                        //bmp.Save(@"C:\temp\temp.bmp");
-                        
+                                                
                         sw.Stop();
                         Debug.WriteLine("time: " + sw.ElapsedMilliseconds.ToString() + "ms");
                         System.Threading.Thread.Sleep(20);
                     }
                 }
             }
+            catch (SharpDX.SharpDXException ex2)
+            {
+                releaseAll();
+                capture();
+            }
             catch (Exception ex2)
-            { }
+            {
+                MessageBox.Show(ex2.Message);
+            }
+        }
+
+        private Bitmap getBMP()
+        {
+            Bitmap bmp = new Bitmap(texdes.Width, texdes.Height, PixelFormat.Format32bppArgb);
+
+            var BoundsRect = new System.Drawing.Rectangle(0, 0, bmp.Width, bmp.Height);
+            BitmapData bmpData = bmp.LockBits(BoundsRect, ImageLockMode.WriteOnly, bmp.PixelFormat);
+
+            int bytes = bmpData.Stride * bmp.Height;
+            var rgbValues = new byte[bytes];
+
+            int a = dataStream.Read(rgbValues, 0, bytes);
+            Marshal.Copy(rgbValues, 0, bmpData.Scan0, bytes);
+            bmp.UnlockBits(bmpData);
+            return bmp;
         }
 
         private void ShowPreview()

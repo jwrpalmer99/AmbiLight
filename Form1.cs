@@ -473,6 +473,7 @@ namespace Ambilight
             //g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
             //g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighSpeed;
             g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Low;
+            g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighSpeed;
             g.Clear(Color.White);
             //g.DrawImageUnscaled(bmp, 0, 0);
             g.DrawImage(bmp,picPreview.DisplayRectangle);
@@ -568,7 +569,7 @@ namespace Ambilight
             try
             {
                 using (ImapClient Client = new ImapClient("imap-mail.outlook.com", 993,
-                 "jeremyp@outlook.com", "p!ngutw00", AuthMethod.Login, true))
+                 "jeremyp@outlook.com", "p!ngutw000", AuthMethod.Login, true))
                 {
                     IEnumerable<uint> uids = Client.Search(SearchCondition.Unseen());
                     int unseen = 0;
