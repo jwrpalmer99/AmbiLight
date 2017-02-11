@@ -405,15 +405,19 @@ namespace Ambilight
             stopAmbient();
         }
 
-        private void stopAmbient()
+        private void stopAmbient(bool temporary = false)
         {
-            ambientOn = false;
-            ambientOnToolStripMenuItem.Checked = false;
             if (this.bw != null)
                 this.bw.CancelAsync();
-            // Disable the Cancel button.
-            button2.Enabled = false;
-            TurnAllLEDOff();
+            if (!temporary)
+            { 
+                ambientOn = false;
+                ambientOnToolStripMenuItem.Checked = false;
+
+                // Disable the Cancel button.
+                button2.Enabled = false;
+                TurnAllLEDOff();
+            }
         }
 
         private void pixelStep_ValueChanged(object sender, EventArgs e)
@@ -610,6 +614,7 @@ namespace Ambilight
 
         private void blink()
         {
+            stopAmbient(true);
             Globals.pause = true;
             turnallOn(0, 255, 255);
             System.Threading.Thread.Sleep(400);
@@ -622,6 +627,7 @@ namespace Ambilight
             turnallOn(0, 255, 255);
             System.Threading.Thread.Sleep(400);
             Globals.pause = false;
+            startAmbient();
         }
 
         private void lblEmail_Click(object sender, EventArgs e)

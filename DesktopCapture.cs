@@ -295,7 +295,8 @@ namespace Ambilight
             }
             catch (Exception ex2)
             {
-                MessageBox.Show(ex2.Message);
+                releaseAll();
+                capture();
             }
         }
 
